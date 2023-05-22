@@ -1,6 +1,8 @@
 package it.prova.agenda.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import it.prova.agenda.model.Agenda;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AgendaDTO {
@@ -100,6 +103,13 @@ public class AgendaDTO {
 				UtenteDTO.buildUtenteDTOFromModel(agendaModel.getUtente()));
 
 		return result;
+	}
+	
+	
+	public static List<AgendaDTO> createAgendaDTOListFromModelList(List<Agenda> modelListInput) {
+		return modelListInput.stream().map(agendaEntity -> {
+			return AgendaDTO.buildAgendaDTOFromModel(agendaEntity);
+		}).collect(Collectors.toList());
 	}
 
 }
