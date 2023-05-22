@@ -26,7 +26,7 @@ import it.prova.agenda.web.api.exception.IdNotNullForInsertException;
 
 
 @RestController
-@RequestMapping("api/agenda")
+@RequestMapping("/api/agenda")
 public class AgendaController {
 	@Autowired
 	private AgendaService agendaService;
